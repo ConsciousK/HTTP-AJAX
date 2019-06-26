@@ -2,16 +2,18 @@ import React from "react";
 
 function Friend(props) {
     return (
-        <div className="characterBox">
-            <p className="characterItem">
+        <div>
+            <div>
                 <h3>{props.friend.name}</h3>
-            </p>
-            <p className="characterItem">
+            </div>
+
+            <div>
                 <strong>Age:</strong><span className="prop">{props.friend.age}</span>
-            </p>
-            <p className="characterItem">
+            </div>
+
+            <div>
                 <strong>Email:</strong> <span className="prop">{props.friend.email}</span>
-            </p>
+            </div>
         </div>
     );
 }

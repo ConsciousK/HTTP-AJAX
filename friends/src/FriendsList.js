@@ -4,12 +4,14 @@ import Friend from "./Friend";
 
 function FriendsList(props) {
   return (
-    <div>
+    <div  key={props.friends.id}>
       {props.friends.map(item => {
         return (
-          <Friend
-            friend={item}
-          />
+        <div>
+            <Friend
+                friend={item}
+            />
+        </div>
         );
       })}
     </div>
