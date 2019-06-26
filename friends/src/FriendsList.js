@@ -4,10 +4,10 @@ import Friend from "./Friend";
 
 function FriendsList(props) {
   return (
-    <div  key={props.friends.id}>
+    <div>
       {props.friends.map(item => {
         return (
-        <div>
+        <div key={item.id}>
             <Friend
                 friend={item}
             />
