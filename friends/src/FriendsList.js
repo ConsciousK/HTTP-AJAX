@@ -5,11 +5,11 @@ import Friend from "./Friend";
 function FriendsList(props) {
   return (
     <div>
-      {props.friends.map(item => {
+      {props.friends.map(friend => {
         return (
-        <div key={item.id}>
+        <div key={friend.id}>
             <Friend
-                friend={item}
+                friend={friend}
             />
         </div>
         );
