@@ -11,13 +11,24 @@ class EditFriend extends React.Component {
 	}
 
 	componentDidMount() {
-		const id = this.props.match.params.id
-
-		axios.get(`http://localhost:5000/friend/${id}`)
+		const id = Number(this.props.match.params.id)
+		axios.get(`http://localhost:5000/friends`)
 			.then(response => {
-				const { name, age, email, id } = response.data
-				this.setState({ name, age, email, id })
+			//	this.setState({ name, age, email, id })
+				const foundfriend = response.data.filter(friend => {
+					if (friend.id === id) {
+						return friend;
+					} else {
+						return null;
+					}
+				})
+				console.log(foundfriend)
+				const { name, age, email } = foundfriend[0]
+				console.log(name, age, email)
+				this.setState({ name, age, email })
 			})
+
+
             .catch(err => {
                 console.log('Error', err) 
             }
