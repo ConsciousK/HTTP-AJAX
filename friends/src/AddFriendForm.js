@@ -31,8 +31,9 @@ class AddFriendForm extends React.Component {
 		        this.props.history.push("/friendslist")
             })
             .catch(err => {
-                console.log('Error', err)
-            })
+                console.log('Error', err) 
+            }
+        )
     }
 
 	render() {

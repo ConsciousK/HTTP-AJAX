@@ -5,23 +5,23 @@ class EditFriend extends React.Component {
 	state = {
 		name: '',
 		age: '',
-        email: '',
+		email: '',
+		id:'',
         errorMessage: null
 	}
 
 	componentDidMount() {
 		const id = this.props.match.params.id
 
-		axios.get(`http://localhost:3333/items/${id}`)
+		axios.get(`http://localhost:5000/friend/${id}`)
 			.then(response => {
-				const { name, age, email } = response.data
-				this.setState({ name, age, email })
+				const { name, age, email, id } = response.data
+				this.setState({ name, age, email, id })
 			})
-			.catch(err => {
-				this.setState({
-					errorMessage: err.response.data.error
-				})
-			})
+            .catch(err => {
+                console.log('Error', err) 
+            }
+        )
 	}
 
 	handleChange = (evt) => {
@@ -30,14 +30,12 @@ class EditFriend extends React.Component {
 		})
 	}
 
-	updateItem = (evt) => {
+	updateFriend = (evt) => {
 		evt.preventDefault()
-
-		const id = this.props.match.params.id
-		const { name, age, email } = this.state
-		const payload = { name, age, email }
+		const { name, age, email, id } = this.state
+		const payload = { name, age, email, id }
 		
-		axios.put(`http://localhost:3333/friendslist/${id}`, payload)
+		axios.put(`http://localhost:5000/friend/${id}`, payload)
 			.then((response) => {
 				this.setState({
 					errorMessage: null
@@ -46,40 +44,36 @@ class EditFriend extends React.Component {
 				this.props.updateItems(response.data)
 				this.props.history.push("/friendslist")
 			})
-			.catch((err) => {
-				this.setState({
-					errorMessage: err.response.data.error
-				})
-			})
+            .catch(err => {
+                console.log('Error', err) 
+            }
+        )
 	}
 
 	deleteItem = (evt) => {
 		evt.preventDefault()
 
-		const id = this.props.match.params.id
-
-		axios.delete(`http://localhost:5000/friendslist/${id}`)
+		axios.delete(`http://localhost:5000/friend/${this.props.id}`)
 			.then((response) => {
 				this.setState({
 					errorMessage: null
 				})
 
 				this.props.updateItems(response.data)
-				this.props.history.push("/friends")
+				this.props.history.push("/friend")
 			})
-			.catch((err) => {
-				this.setState({
-					errorMessage: err.response.data.error
-				})
-			})
+            .catch(err => {
+                console.log('Error', err) 
+            }
+        )
 	}
 
 	render() {
 		const { name, age, email } = this.state
 
 		return (
-			<form onSubmit={this.updateItem}>
-				<h1>Edit Trinket</h1>
+			<form onSubmit={this.updateFriend}>
+				<h1>Edit Friend</h1>
 
 				<p>{this.errorMessage}</p>
 

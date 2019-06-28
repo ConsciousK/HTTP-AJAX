@@ -5,7 +5,7 @@ import './App.css';
 import FriendsList from './FriendsList';
 import AddFriendForm from './AddFriendForm';
 import EditFriend from './EditFriend';
-
+import Friend from './Friend'
 class App extends Component {
     state = {
       listOfFriends: []
@@ -44,6 +44,7 @@ class App extends Component {
           </nav>
           <Route exact path="/friendslist" render={(props) => <FriendsList {...props} friends={listOfFriends} />} />
           <Route exact path="/addfriend" render={(props) => <AddFriendForm {...props} updateFriends={this.updateFriends} />} />
+          <Route path="/friend/:id" render={(props) => <Friend {...props} updateFriends={this.updateFriends} />} />
           <Route exact path="/edit/:id" render={(props) => <EditFriend {...props} updateFriends={this.updateFriends} />} />
         </div>
       </BrowserRouter>
